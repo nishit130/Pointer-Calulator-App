@@ -33,7 +33,7 @@ export default class HelloWorldApp extends Component {
         edlab_8 : "ED Lab",
         workshop_9 : "Workshop",
       },
-      typer : "0",
+      typer : "",
       current : "",
       text : "hello",
       styl : "blue",
@@ -76,7 +76,7 @@ export default class HelloWorldApp extends Component {
             workshop_9 : "Workshop",
           },
           [save] : this.state.display,
-          typer : "0",
+          typer : "",
         }
       ))
       if(this.state[save] != 0)
@@ -109,17 +109,18 @@ export default class HelloWorldApp extends Component {
       ))
     }
     else{
-      this.setState(previousState => (
-        {
-          typer : previousState.typer + param,
-          // display : parseInt(this.state.typer),
-        }
-      ))
       this.setState((
         {
-        display : parseInt(this.state.typer),
+          typer : this.state.typer + param,
         }
       ))
+      setTimeout(() =>{
+        this.setState((
+          {
+            display : this.state.typer,
+          }
+        ))
+      },20);
     } 
   }
   calculate = () => {
@@ -149,7 +150,7 @@ export default class HelloWorldApp extends Component {
             <View style={styles.viewbt}>
             <TouchableOpacity style={[styles.btnr,btnrstyles]} onPress={() => this.press("AM","1")}><Text style={styles.bt}>{this.state.button_display.am_1}</Text></TouchableOpacity>
             <TouchableOpacity style={[styles.btnr,btnrstyles]} onPress={() => this.press("EEEE","2")}><Text style={styles.bt}>{this.state.button_display.eeee_2}</Text></TouchableOpacity>
-            <TouchableOpacity style={[styles.btnr,btnrstyles]} onPress={() => this.press("EC","3")}><Text style={styles.bt}>{this.state.button_display.ec_3}</Text></TouchableOpacity>
+            <TouchableOpacity style={[styles.btnr,btnrstyles]} onPress={() => {this.press("EC","3");}}><Text style={styles.bt}>{this.state.button_display.ec_3}</Text></TouchableOpacity>
             </View>
             <View style={styles.viewbt}>
             <TouchableOpacity style={[styles.btnr,btnrstyles]} onPress= {() => this.press("ED","4")}><Text style={styles.bt}>{this.state.button_display.ed_4}</Text></TouchableOpacity>
