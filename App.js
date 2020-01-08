@@ -8,12 +8,12 @@ import
 
 } from 'react-native';
 
-export default class HelloWorldApp extends Component {
+export default class pointerCalculator extends Component {
   constructor(props){
     super(props)
     this.state = {
       EC : 0,
-      AM : 10,
+      AM : 0,
       ED : 0,
       EEEE : 0,
       CS : 0,
@@ -36,7 +36,7 @@ export default class HelloWorldApp extends Component {
       typer : "",
       current : "",
       text : "hello",
-      styl : "blue",
+      styl : "black",
     }
    }
   counter = true;
@@ -102,11 +102,29 @@ export default class HelloWorldApp extends Component {
         }
       ))    
       this.change_button();
-      this.setState((
-        {
-          text: `Enter the Total Marks out of 100 for ${para}`,
-        }
-      ))
+      if(para != "AM" && para != "ED_lab" && para != "EC_lab" && para != "EEEE_lab" && para != "Workshop")
+      {
+        this.setState((
+          {
+            text: `Enter the Total Marks out of 100 for ${para}`,
+          }
+        ))
+      }
+      else if(para == "AM")
+      {
+        this.setState((
+          {
+            text: `Enter the Total Marks out of 125 (100 Theorey + 25 Tutorials) for ${para}`,
+          }
+        ))
+      }
+      else{
+        this.setState((
+          {
+            text: `Enter the Total Marks out of 50 (25 oral + 25 Lab) for ${para}`,
+          }
+        ))
+      }
     }
     else{
       this.setState((
@@ -123,11 +141,38 @@ export default class HelloWorldApp extends Component {
       },20);
     } 
   }
+  pointercal = (param) => {
+    if(param>85)
+      return 10;
+    else if(param>75)
+      return 9;
+    else if(param>70)
+      return 8;
+    else if(param>65)
+      return 7;
+    else if(param>60)
+      return 6;
+    else if(param>50)
+      return 5;
+    else
+      return 0;
+  }
   calculate = () => {
-    let pointer = (this.state.AM*5)/50;
+    let pointers = {
+      EC : (this.state.EC/100)*100,
+      AM : (this.state.AM/125)*100,
+      ED : (this.state.ED/100)*100,
+      EEEE : (this.state.EEEE/100)*100,
+      CS : (this.state.CS/100)*100,
+      EC_lab : (this.state.EC_lab/50)*100,
+      ED_lab : (this.state.ED_lab/50)*100,
+      EEEE_lab : (this.state.EEEE_lab/50)*100,
+      Workshop : (this.state.Workshop/50)*100,
+    }
+    let pointer = (this.pointercal(pointers.AM)*5 + this.pointercal(pointers.EC)*4 + this.pointercal(pointers.ED)*3 + this.pointercal(pointers.EEEE)*3 + this.pointercal(pointers.CS)*2 + this.pointercal(pointers.EC_lab) + this.pointercal(pointers.ED_lab) + this.pointercal(pointers.EEEE_lab) + this.pointercal(pointers.Workshop)*2)/22;
     this.setState((
       {
-        text : `Your Pointer is ${pointer}`, 
+        text : `Your Pointer is ${pointer.toFixed(2)}`, 
       }
     )) 
   }
@@ -142,8 +187,8 @@ export default class HelloWorldApp extends Component {
     return (
       <View style={styles.view}>
       <View style={styles.view1}>
-        <Text>{this.state.display}</Text>
-        <Text>{this.state.text}</Text>
+        <Text style={styles.textview}>{this.state.display}</Text>
+        <Text style={styles.textview}>{this.state.text}</Text>
       </View>
       <View style={styles.view2}>
           <View style={styles.view3}>
@@ -162,6 +207,9 @@ export default class HelloWorldApp extends Component {
             <TouchableOpacity style={[styles.btnr,btnrstyles]} onPress={() => this.press("ED_lab","8")}><Text style={styles.bt}>{this.state.button_display.edlab_8}</Text></TouchableOpacity>
             <TouchableOpacity style={[styles.btnr,btnrstyles]} onPress={() => this.press("Workshop","9")}><Text style={styles.bt}>{this.state.button_display.workshop_9}</Text></TouchableOpacity>
             </View>
+            <View style={styles.viewbt}>
+            <TouchableOpacity style={[styles.btnr,btnrstyles]} onPress={() => this.press("","0")}><Text style={styles.bt}>0</Text></TouchableOpacity>
+            </View>
           </View>
           <View style={styles.view4}>
             <TouchableOpacity style={[styles.btnr,btnrstyles]} onPress={this.change_button}><Text style = {styles.bt}>Enter</Text></TouchableOpacity>
@@ -178,8 +226,10 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
   },
   view1 : {
-    // backgroundColor : 'red',
     height: 150,
+  },
+  textview : {
+    height : 75,
   },
   view2 : {
     flex: 1,
@@ -206,5 +256,6 @@ const styles = StyleSheet.create({
   },
   bt: {
     color : "white",
+    fontSize: 15,
   }
 });
