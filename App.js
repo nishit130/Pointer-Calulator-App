@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, Image, TouchableOpacity, Button, StyleSheet } from 'react-native';
 import {createAppContainer} from 'react-navigation';
 import {createDrawerNavigator} from 'react-navigation-drawer';
-import {createStackNavigator} from 'react-navigation-stack';
+import {createStackNavigator, CardAnimationContext} from 'react-navigation-stack';
 import Screen1 from './pages/Screen1';
 import Screen2 from './pages/Screen2';
 import Screen3 from './pages/Screen3';
@@ -34,12 +34,16 @@ const FirstActivity_StackNavigator = createStackNavigator({
   //All the screen from the Screen1 will be indexed here
   First: {
     screen: Screen1,
+    mode : 'modal',
+    headerMode: 'float',
     navigationOptions: ({ navigation }) => ({
       title: 'Calculator',
-      headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
+      headerShown : 'false',
+      headerLeft: () => <NavigationDrawerStructure navigationProps={navigation} />,
       headerStyle: {
         backgroundColor: 'white',
       },
+      gestureEnabled :true,
     }),
   },
 });
@@ -54,7 +58,9 @@ const Screen2_StackNavigator = createStackNavigator({
       headerStyle: {
         backgroundColor: '#FF9800',
       },
-      headerTintColor: '#fff',
+      cardStyle:{
+        backgroundColor: 'pink',
+      }
     }),
   },
 });
@@ -97,6 +103,13 @@ const DrawerNavigatorExample = createDrawerNavigator({
       drawerLabel: 'Feedback',
     },
   },
+},
+// Drawer Navigator Config
+{
+  drawerBackgroundColor: 'pink',
+  drawerType : 'slide',
+  // edgeWidth: 10,
+  // minSwipeDistance : 10,
 });
  
 export default createAppContainer(DrawerNavigatorExample);
