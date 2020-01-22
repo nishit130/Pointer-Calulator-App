@@ -9,7 +9,9 @@ export default class Screen2 extends Component {
   render() {
     return (
       <View style={styles.MainContainer}>
-        <Text style={{ fontSize: 23 }}> Screen 2 </Text>
+        <View>
+          <Text>About the developer</Text>
+        </View>
       </View>
     );
   }
@@ -18,9 +20,5 @@ export default class Screen2 extends Component {
 const styles = StyleSheet.create({
   MainContainer: {
     flex: 1,
-    paddingTop: 20,
-    alignItems: 'center',
-    marginTop: 50,
-    justifyContent: 'center',
   },
 });

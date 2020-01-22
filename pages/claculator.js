@@ -34,8 +34,8 @@ export default class pointerCalculator extends Component {
       },
       typer : "",
       current : "",
-      text : "hello",
-      styl : "black",
+      text : "",
+      styl : "#34495e",
     }
    }
   counter = true;
@@ -73,15 +73,16 @@ export default class pointerCalculator extends Component {
             eeeelab_7 : "EEEE Lab",
             edlab_8 : "ED Lab",
             workshop_9 : "Workshop",
-          },
+            },
           [save] : this.state.display,
           typer : "",
+          text : "",
         }
       ))
       if(this.state[save] != 0)
       {
         this.setState(({
-          styl : "black",
+          styl : "#34495e",
         }))
       }
     }
@@ -185,9 +186,10 @@ export default class pointerCalculator extends Component {
     }
     return (
       <View style={styles.view}>
-      <View style={styles.view1}>
+      <View style={styles.alert}><Text></Text></View>
+      <View style={[styles.view1,styles.alert]}>
         <Text style={styles.textview}>{this.state.display}</Text>
-        <Text style={styles.textviewmsg}>{this.state.text}</Text>
+        <Text style={[styles.textviewmsg]}>{this.state.text}</Text>
       </View>
       <View style={styles.view2}>
           <View style={styles.view3}>
@@ -212,7 +214,7 @@ export default class pointerCalculator extends Component {
           </View>
           <View style={styles.view4}>
             <TouchableOpacity style={[styles.btnr,btnrstyles]} onPress={this.change_button}><Text style = {styles.bt}>Enter</Text></TouchableOpacity>
-            <TouchableOpacity style={[styles.btnr,btnrstyles]} onPress={this.calculate}><Text style = {styles.bt}>Calculate</Text></TouchableOpacity>
+            <TouchableOpacity style={[styles.btnr,btnrstyles,styles.viewbtr]} onPress={this.calculate}><Text style = {styles.bt}>Calculate</Text></TouchableOpacity>
           </View>
       </View>
       </View>
@@ -223,19 +225,43 @@ const styles = StyleSheet.create({
   view: {
     flex:1,
     flexDirection: 'column',
+    backgroundColor : "#1abc9c",
+    justifyContent : 'center',
+    alignItems : 'center',
   },
   view1 : {
     height: 150,
   },
   textview : {
     height : 70,
-    marginTop: 5,
     fontSize:30,
+    width : 90,
+    marginBottom: 15,
+    fontWeight : "900",
     textAlign: "center",
+    color : '#2c3e50',
   },
   textviewmsg : {
     height : 70,
+    color : '#2c3e50',
+    fontSize: 18,
+    fontFamily : 'lucida grande',
+    fontWeight :'bold',
     textAlign: "center",
+  },
+  alert : {
+    zIndex : 20,
+    borderWidth : 2,
+    paddingBottom : 50,
+    width : "95%",
+    height : 65,
+    justifyContent : 'center',
+    alignItems : 'center',
+    borderRadius : 40,
+    marginTop: 10,
+    marginBottom : 10,
+    fontSize:30,
+    // backgroundColor: 'white',
   },
   view2 : {
     flex: 1,
@@ -251,6 +277,7 @@ const styles = StyleSheet.create({
   btnr:{
     flex: 8,
     borderRightWidth: 5,
+    borderColor : "#2c3e50",
     alignItems: "center",
     justifyContent: "center",
     // backgroundColor: "blue",
@@ -258,10 +285,16 @@ const styles = StyleSheet.create({
   viewbt : {
     flex: 1,
     borderTopWidth : 5,
+    borderColor : "#2c3e50",
     flexDirection : "row",
   },
+  viewbtr : {
+    borderTopWidth : 5,
+    borderColor : "#2c3e50",
+  },
   bt: {
-    color : "white",
+    color : "#1abc9c",
     fontSize: 15,
+    fontWeight : 'bold',
   }
 });

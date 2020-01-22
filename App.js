@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import { View, Image, TouchableOpacity, Button, StyleSheet } from 'react-native';
+import { View, Image, TouchableOpacity, Button, StyleSheet, ScrollView } from 'react-native';
 import {createAppContainer} from 'react-navigation';
 import {createDrawerNavigator} from 'react-navigation-drawer';
 import {createStackNavigator, CardAnimationContext} from 'react-navigation-stack';
 import Screen1 from './pages/Screen1';
 import Screen2 from './pages/Screen2';
 import Screen3 from './pages/Screen3';
+import Sidebar from './components/drawer';
 
 
  
@@ -41,8 +42,9 @@ const FirstActivity_StackNavigator = createStackNavigator({
       headerShown : 'false',
       headerLeft: () => <NavigationDrawerStructure navigationProps={navigation} />,
       headerStyle: {
-        backgroundColor: 'white',
+        backgroundColor: '#34495e',
       },
+      headerTintColor: 'pink',
       gestureEnabled :true,
     }),
   },
@@ -73,13 +75,12 @@ const Screen3_StackNavigator = createStackNavigator({
       title: 'Demo Screen 3',
       headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
       headerStyle: {
-        backgroundColor: '#FF9800',
+        backgroundColor: 'black',
       },
-      headerTintColor: '#fff',
+      headerTintColor: 'pink',
     }),
   },
 });
- 
 const DrawerNavigatorExample = createDrawerNavigator({
   //Drawer Optons and indexing
   Screen1: {
@@ -106,10 +107,27 @@ const DrawerNavigatorExample = createDrawerNavigator({
 },
 // Drawer Navigator Config
 {
-  drawerBackgroundColor: 'pink',
   drawerType : 'slide',
-  // edgeWidth: 10,
-  // minSwipeDistance : 10,
+  drawerBackgroundColor: '#34495e',
+  contentComponent : Sidebar,
+  contentOptions : {
+    activeBackgroundColor : '#1abc9c',
+    activeTintColor : '#2c3e50',
+    inactiveTintColor : '#bdc3c7',
+    itemsContainerStyle : {
+      
+    },
+    itemStyle : {
+      borderRadius : 50,
+      borderWidth : 3,
+      borderColor : '#1abc9c',
+      marginTop : 10,
+    },
+    activeLabelStyle : {
+    //  borderWidth : 3,
+
+    }
+  },
 });
  
 export default createAppContainer(DrawerNavigatorExample);
