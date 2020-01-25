@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import MyText from '../components/mytext';
 import 
 { 
   Text,
@@ -36,8 +37,37 @@ export default class pointerCalculator extends Component {
       current : "",
       text : "",
       styl : "#34495e",
+      isHidden : false,
     }
    }
+  //  ShowHideTextComponentView = () =>{
+ 
+  //   if(this.state.isHidden == true)
+  //   {
+  //     this.setState({isHidden: false})
+  //   }
+  //   else
+  //   {
+  //     this.setState({isHidden: true})
+  //   }
+  // }
+   
+  //   render() {
+    
+  //     return (
+   
+  //       <View style={styles.MainContainer}>
+   
+  //       {
+  //           // Pass any View or Component inside the curly bracket.
+  //           // Here the ? Question Mark represent the ternary operator.
+   
+  //         this.state.isHidden ? <Text style= {{ fontSize: 25, color: "#000", textAlign: 'center' }}> Hello Friends </Text> : null
+  //       }   
+  //       </View>
+  //     );
+  //   }
+  // }
   counter = true;
   change_button = () => {
     let save = "";
@@ -55,7 +85,8 @@ export default class pointerCalculator extends Component {
             eeeelab_7 : "7",
             edlab_8 : "8",
             workshop_9 : "9",
-          }
+          },
+          isHidden : !(this.state.isHidden),
         }
       ))
     }
@@ -77,6 +108,7 @@ export default class pointerCalculator extends Component {
           [save] : this.state.display,
           typer : "",
           text : "",
+          isHidden : !(this.state.isHidden)
         }
       ))
       if(this.state[save] != 0)
@@ -88,12 +120,14 @@ export default class pointerCalculator extends Component {
     }
     this.counter = !this.counter;
   }
+
   press = (para,param) => {
     if(isNaN(parseInt(this.state.button_display.am_1)))
     {
       this.setState((
         { 
           current : para,
+          // isHidden : true,
         }
       ))
       this.setState(previonsState => (
@@ -194,19 +228,19 @@ export default class pointerCalculator extends Component {
       <View style={styles.view2}>
           <View style={styles.view3}>
             <View style={styles.viewbt}>
-            <TouchableOpacity style={[styles.btnr,btnrstyles]} onPress={() => this.press("AM","1")}><Text style={styles.bt}>{this.state.button_display.am_1}</Text></TouchableOpacity>
-            <TouchableOpacity style={[styles.btnr,btnrstyles]} onPress={() => this.press("EEEE","2")}><Text style={styles.bt}>{this.state.button_display.eeee_2}</Text></TouchableOpacity>
-            <TouchableOpacity style={[styles.btnr,btnrstyles]} onPress={() => {this.press("EC","3");}}><Text style={styles.bt}>{this.state.button_display.ec_3}</Text></TouchableOpacity>
+            <TouchableOpacity style={[styles.btnr,btnrstyles]} onPress={() => this.press("AM","1")}><Text style={styles.bt}>{this.state.button_display.am_1}</Text><MyText hide={this.state.isHidden}><Text style={styles.bt}>{this.state.AM}</Text></MyText></TouchableOpacity>
+            <TouchableOpacity style={[styles.btnr,btnrstyles]} onPress={() => this.press("EEEE","2")}><Text style={styles.bt}>{this.state.button_display.eeee_2}</Text><MyText hide={this.state.isHidden}><Text style={styles.bt}>{this.state.EEEE}</Text></MyText></TouchableOpacity>
+            <TouchableOpacity style={[styles.btnr,btnrstyles]} onPress={() => {this.press("EC","3");}}><Text style={styles.bt}>{this.state.button_display.ec_3}</Text><MyText hide={this.state.isHidden}><Text style={styles.bt}>{this.state.EC}</Text></MyText></TouchableOpacity>
             </View>
             <View style={styles.viewbt}>
-            <TouchableOpacity style={[styles.btnr,btnrstyles]} onPress= {() => this.press("ED","4")}><Text style={styles.bt}>{this.state.button_display.ed_4}</Text></TouchableOpacity>
-            <TouchableOpacity style={[styles.btnr,btnrstyles]} onPress={() => this.press("CS","5")}><Text style={styles.bt}>{this.state.button_display.cs_5}</Text></TouchableOpacity>
-            <TouchableOpacity style={[styles.btnr,btnrstyles]} onPress={() => this.press("EC_lab","6")}><Text style={styles.bt}>{this.state.button_display.eclab_6}</Text></TouchableOpacity>
+            <TouchableOpacity style={[styles.btnr,btnrstyles]} onPress= {() => this.press("ED","4")}><Text style={styles.bt}>{this.state.button_display.ed_4}</Text><MyText hide={this.state.isHidden}><Text style={styles.bt}>{this.state.ED}</Text></MyText></TouchableOpacity>
+            <TouchableOpacity style={[styles.btnr,btnrstyles]} onPress={() => this.press("CS","5")}><Text style={styles.bt}>{this.state.button_display.cs_5}</Text><MyText hide={this.state.isHidden}><Text style={styles.bt}>{this.state.CS}</Text></MyText></TouchableOpacity>
+            <TouchableOpacity style={[styles.btnr,btnrstyles]} onPress={() => this.press("EC_lab","6")}><Text style={styles.bt}>{this.state.button_display.eclab_6}</Text><MyText hide={this.state.isHidden}><Text style={styles.bt}>{this.state.EC_lab}</Text></MyText></TouchableOpacity>
             </View>
             <View style={styles.viewbt}>
-            <TouchableOpacity style={[styles.btnr,btnrstyles]} onPress={() => this.press("EEEE_lab","7")}><Text style={styles.bt}>{this.state.button_display.eeeelab_7}</Text></TouchableOpacity>
-            <TouchableOpacity style={[styles.btnr,btnrstyles]} onPress={() => this.press("ED_lab","8")}><Text style={styles.bt}>{this.state.button_display.edlab_8}</Text></TouchableOpacity>
-            <TouchableOpacity style={[styles.btnr,btnrstyles]} onPress={() => this.press("Workshop","9")}><Text style={styles.bt}>{this.state.button_display.workshop_9}</Text></TouchableOpacity>
+            <TouchableOpacity style={[styles.btnr,btnrstyles]} onPress={() => this.press("EEEE_lab","7")}><Text style={styles.bt}>{this.state.button_display.eeeelab_7}</Text><MyText hide={this.state.isHidden}><Text style={styles.bt}>{this.state.EEEE_lab}</Text></MyText></TouchableOpacity>
+            <TouchableOpacity style={[styles.btnr,btnrstyles]} onPress={() => this.press("ED_lab","8")}><Text style={styles.bt}>{this.state.button_display.edlab_8}</Text><MyText hide={this.state.isHidden}><Text style={styles.bt}>{this.state.ED_lab}</Text></MyText></TouchableOpacity>
+            <TouchableOpacity style={[styles.btnr,btnrstyles]} onPress={() => this.press("Workshop","9")}><Text style={styles.bt}>{this.state.button_display.workshop_9}</Text><MyText hide={this.state.isHidden}><Text style={styles.bt}>{this.state.Workshop}</Text></MyText></TouchableOpacity>
             </View>
             <View style={styles.viewbt}>
             <TouchableOpacity style={[styles.btnr,btnrstyles]} onPress={() => this.press("","0")}><Text style={styles.bt}>0</Text></TouchableOpacity>
@@ -232,6 +266,9 @@ const styles = StyleSheet.create({
   view1 : {
     height: 150,
   },
+  btd: {
+    opacity : 0,
+  },  
   textview : {
     height : 70,
     fontSize:30,

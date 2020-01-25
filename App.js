@@ -30,7 +30,6 @@ class NavigationDrawerStructure extends Component {
     );
   }
 }
- 
 const FirstActivity_StackNavigator = createStackNavigator({
   //All the screen from the Screen1 will be indexed here
   First: {
@@ -44,7 +43,7 @@ const FirstActivity_StackNavigator = createStackNavigator({
       headerStyle: {
         backgroundColor: '#34495e',
       },
-      headerTintColor: 'pink',
+      headerTintColor: '#1abc9c',
       gestureEnabled :true,
     }),
   },
@@ -55,14 +54,13 @@ const Screen2_StackNavigator = createStackNavigator({
   Second: {
     screen: Screen2,
     navigationOptions: ({ navigation }) => ({
-      title: 'Demo Screen 2',
+      title: 'Credits',
       headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
       headerStyle: {
-        backgroundColor: '#FF9800',
+        backgroundColor: '#34495e',
       },
-      cardStyle:{
-        backgroundColor: 'pink',
-      }
+      headerTintColor: '#1abc9c',
+      gestureEnabled :true,
     }),
   },
 });
@@ -75,9 +73,10 @@ const Screen3_StackNavigator = createStackNavigator({
       title: 'Demo Screen 3',
       headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
       headerStyle: {
-        backgroundColor: 'black',
+        backgroundColor: '#34495e',
       },
-      headerTintColor: 'pink',
+      headerTintColor: '#1abc9c',
+      gestureEnabled :true,
     }),
   },
 });
