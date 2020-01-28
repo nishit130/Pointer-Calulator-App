@@ -1,41 +1,73 @@
 //This is an example code for NavigationDrawer//
 import React, { Component } from 'react';
 //import react in our code.
-import { StyleSheet, View, Text , ScrollView, Image} from 'react-native';
+import { StyleSheet, View, Text , TextInput,Button} from 'react-native';
 // import all basic components
  
 export default class Screen3 extends Component {
-  //Screen3 Component
+  constructor(props){
+    super(props)
+    this.state = {
+    text: 'Name',
+    feedback : 'Write your review..'
+  }
+}
   render() {
     return (
-      <ScrollView style={styles.MainContainer}>
-        <View>
-            <View style={styles.aboutmain}>
-                <View style={styles.topcontainer}>
-                {/* <ImageBackground source={{uri: 'https://i.ytimg.com/vi/oUIdZW1d-DU/maxresdefault.jpg'}} style={styles.image}> */}
-                <Image source= {{uri : 'https://avatars1.githubusercontent.com/u/35602510?s=400&v=4'}} style={styles.image} ></Image>
-                <View style={styles.textcontainer}>
-                <Text style={styles.text}>Nishit Patel</Text>
-                <Text style ={styles.descrip}>Developer</Text>
-                </View>
-                </View>
-            </View>
+      <View style={styles.MainContainer}>
+        <View style={styles.name}>
+          <Text style={{marginBottom : 10,}}>Name: </Text>
+          <TextInput
+            style={styles.textcontainer}
+            onChangeText={text => this.setState({text})}
+            value={this.state.text}
+          />
         </View>
-      </ScrollView>
-    );
+        <View style={styles.review}>
+          <Text>Review: </Text>
+          <TextInput
+            style={styles.rewcontainer}
+            onChangeText={feedback => this.setState({feedback})}
+            value={this.state.feedback}
+          />
+        </View>
+        <View>
+        <Button
+          title="Sumbit"
+          onPress={() => alert('Thank You for your valuable feedback :)')}
+        />
+        </View>
+      </View>
+    )
   }
 }
  
 const styles = StyleSheet.create({
   MainContainer: {
     flex: 1,
-    backgroundColor : "#1abc9c",
+    borderWidth :2,
+    margin : 10,
+    backgroundColor : "#34495e",
   },
-  topcontainer: {
-    backgroundColor : '#34495e',
-    borderBottomColor : '#2c3e50',
-    // alignItems : 'center',
-    // justifyContent : 'center',
+  name: {
+    flex :2,
+    marginTop : 20,
+    fontSize :40,
+    backgroundColor : '#1abc9c',
+  },
+  review: {
+    flex :8,
+    backgroundColor : '#1abc9c',
+  },
+  Text : {
+    fontSize : 40,
+  },
+  rewcontainer : {
+     height : 100,
+     borderWidth : 2,
+     textAlign : "justify",
+     backgroundColor : "#34495e",
+     color : 'white',
   },
   aboutmain : {
     flex : 2,
@@ -61,9 +93,9 @@ const styles = StyleSheet.create({
     marginLeft : 20,
   },
   textcontainer : {
-    flex:1,
-    alignItems : 'center',
-    justifyContent : 'center',
+    backgroundColor:  "#34495e",
+    color : 'white',
+    borderWidth : 2,
   },
   text : {
     marginTop : 70,
