@@ -11,16 +11,13 @@ import Sidebar from './components/drawer';
 
  
 class NavigationDrawerStructure extends Component {
-  //Structure for the navigatin Drawer
   toggleDrawer = () => {
-    //Props to open/close the drawer
     this.props.navigationProps.toggleDrawer();
   };
   render() {
     return (
       <View style={{ flexDirection: 'row' }}>
         <TouchableOpacity onPress={this.toggleDrawer.bind(this)}>
-          {/*Donute Button Image */}
           <Image
             source={require('./image/drawer.png')}
             style={{ width: 25, height: 25, marginLeft: 5 }}
@@ -31,7 +28,6 @@ class NavigationDrawerStructure extends Component {
   }
 }
 const FirstActivity_StackNavigator = createStackNavigator({
-  //All the screen from the Screen1 will be indexed here
   First: {
     screen: Screen1,
     mode : 'modal',
@@ -50,7 +46,6 @@ const FirstActivity_StackNavigator = createStackNavigator({
 });
  
 const Screen2_StackNavigator = createStackNavigator({
-  //All the screen from the Screen2 will be indexed here
   Second: {
     screen: Screen2,
     navigationOptions: ({ navigation }) => ({
@@ -66,7 +61,6 @@ const Screen2_StackNavigator = createStackNavigator({
 });
  
 const Screen3_StackNavigator = createStackNavigator({
-  //All the screen from the Screen3 will be indexed here
   Third: {
     screen: Screen3,
     navigationOptions: ({ navigation }) => ({
@@ -81,7 +75,6 @@ const Screen3_StackNavigator = createStackNavigator({
   },
 });
 const DrawerNavigatorExample = createDrawerNavigator({
-  //Drawer Optons and indexing
   Screen1: {
     //Title
     screen: FirstActivity_StackNavigator,

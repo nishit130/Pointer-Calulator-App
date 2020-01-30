@@ -40,34 +40,6 @@ export default class pointerCalculator extends Component {
       isHidden : false,
     }
    }
-  //  ShowHideTextComponentView = () =>{
- 
-  //   if(this.state.isHidden == true)
-  //   {
-  //     this.setState({isHidden: false})
-  //   }
-  //   else
-  //   {
-  //     this.setState({isHidden: true})
-  //   }
-  // }
-   
-  //   render() {
-    
-  //     return (
-   
-  //       <View style={styles.MainContainer}>
-   
-  //       {
-  //           // Pass any View or Component inside the curly bracket.
-  //           // Here the ? Question Mark represent the ternary operator.
-   
-  //         this.state.isHidden ? <Text style= {{ fontSize: 25, color: "#000", textAlign: 'center' }}> Hello Friends </Text> : null
-  //       }   
-  //       </View>
-  //     );
-  //   }
-  // }
   counter = true;
   change_button = () => {
     let save = "";
@@ -127,7 +99,6 @@ export default class pointerCalculator extends Component {
       this.setState((
         { 
           current : para,
-          // isHidden : true,
         }
       ))
       this.setState(previonsState => (
@@ -176,18 +147,20 @@ export default class pointerCalculator extends Component {
     } 
   }
   pointercal = (param) => {
-    if(param>85)
+    if(param>=85)
       return 10;
-    else if(param>75)
+    else if(param>=75)
       return 9;
-    else if(param>70)
+    else if(param>=70)
       return 8;
-    else if(param>65)
+    else if(param>=60)
       return 7;
-    else if(param>60)
+    else if(param>=50)
       return 6;
-    else if(param>50)
+    else if(param>=45)
       return 5;
+    else if(param>=40)
+      return 4;
     else
       return 0;
   }

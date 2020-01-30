@@ -1,7 +1,7 @@
 //This is an example code for NavigationDrawer//
 import React, { Component } from 'react';
 //import react in our code.
-import { StyleSheet, View, Text ,Image, TextInput,Button,KeyboardAvoidingView} from 'react-native';
+import { StyleSheet, View, Text ,Image, TextInput, Button, KeyboardAvoidingView, Alert} from 'react-native';
 // import all basic components
  
 export default class Screen3 extends Component {
@@ -44,7 +44,7 @@ export default class Screen3 extends Component {
         <Button
           color="#34495e"
           title="Sumbit"
-          onPress={() => alert('Thank You for your valuable feedback :)')}
+          onPress={() => Alert.alert("","Thank You for your valuable feedback :)")}
         />
         <Text style={styles.quoteu}>“We all need people who will give us feedback. That’s how we improve.”</Text>
         <Text style={styles.quoted}>-Bill Gates</Text>
