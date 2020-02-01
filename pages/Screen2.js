@@ -9,7 +9,7 @@ export default class Screen2 extends Component {
   }
 
   render() {
-    let yourPDFURI = {uri:'bundle-assets://pdf/exam_rules.pdf', cache: true};
+    let yourPDFURI = {uri:'bundle-assets://pdf/exam_rules.pdf.pdf', cache: true};
 
     return (
     <View style={{flex: 1}}>

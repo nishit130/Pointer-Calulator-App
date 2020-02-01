@@ -64,35 +64,71 @@ export default class pointerCalculator extends Component {
     }
     else{
       save = this.state.current;
-      this.setState((
-        {
-          button_display : {
-            am_1 : "AM",
-            eeee_2 : "EEEEE",
-            ec_3 : "EC",
-            ed_4 : "ED",
-            cs_5 : "CS",
-            eclab_6 : "EC Lab",
-            eeeelab_7 : "EEEE Lab",
-            edlab_8 : "ED Lab",
-            workshop_9 : "Workshop",
-            },
-          [save] : this.state.display,
-          typer : "",
-          text : "",
-          isHidden : !(this.state.isHidden)
-        }
-      ))
-      if(this.state[save] != 0)
+      // if(save == "AM")
+      if(this.state.display > 100 && save!="AM")
       {
-        this.setState(({
-          styl : "#34495e",
-        }))
+        this.setState({
+          display: 0,
+          typer: " ",
+          text: "Enter Valid Marks",
+        })
+        this.counter = !this.counter
+      }
+      else if(this.state.display >125 && save=="AM") {
+        this.setState({
+          display: 0,
+          typer: " ",
+          text: "Enter Valid Marks",
+        })
+        this.counter = !this.counter
+      }
+      else{
+        this.setState((
+          {
+            button_display : {
+              am_1 : "AM",
+              eeee_2 : "EEEEE",
+              ec_3 : "EC",
+              ed_4 : "ED",
+              cs_5 : "CS",
+              eclab_6 : "EC Lab",
+              eeeelab_7 : "EEEE Lab",
+              edlab_8 : "ED Lab",
+              workshop_9 : "Workshop",
+              },
+            [save] : this.state.display,
+            typer : "",
+            text : "",
+            isHidden : !(this.state.isHidden)
+          }
+        ))
+        if(this.state[save] != 0)
+        {
+          this.setState(({
+            styl : "#34495e",
+          }))
+        }
       }
     }
     this.counter = !this.counter;
   }
-
+  clear = () =>
+  {
+    this.setState({
+      EC : 0,
+      AM : 0,
+      ED : 0,
+      EEEE : 0,
+      CS : 0,
+      EC_lab : 0,
+      ED_lab : 0,
+      EEEE_lab : 0,
+      Workshop : 0,
+      display : 0,
+      text : '',
+      typer : '',
+    })
+  }
   press = (para,param) => {
     if(isNaN(parseInt(this.state.button_display.am_1)))
     {
@@ -222,6 +258,7 @@ export default class pointerCalculator extends Component {
           <View style={styles.view4}>
             <TouchableOpacity style={[styles.btnr,btnrstyles]} onPress={this.change_button}><Text style = {styles.bt}>Enter</Text></TouchableOpacity>
             <TouchableOpacity style={[styles.btnr,btnrstyles,styles.viewbtr]} onPress={this.calculate}><Text style = {styles.bt}>Calculate</Text></TouchableOpacity>
+            <TouchableOpacity style={[styles.btnr,btnrstyles,styles.viewbtr]} onPress={this.clear}><Text style = {styles.bt}>Clear</Text></TouchableOpacity>
           </View>
       </View>
       </View>
