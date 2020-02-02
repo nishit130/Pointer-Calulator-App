@@ -125,9 +125,13 @@ export default class pointerCalculator extends Component {
       EEEE_lab : 0,
       Workshop : 0,
       display : 0,
-      text : '',
-      typer : '',
+      text : "",
+      typer : "",
     })
+    if(!isNaN(parseInt(this.state.button_display.am_1)))
+    {
+      this.change_button();
+    }
   }
   press = (para,param) => {
     if(isNaN(parseInt(this.state.button_display.am_1)))
