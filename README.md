@@ -1,6 +1,9 @@
-# <b>Pointer Calculator App</b>
+#  <center>Pointer Calculator App </center>
+
+![](./screenshots/main.png)
 <hr/>
-It is a Native app build using [React-native](https://facebook.github.io/react-native/) and is compatiple with both Android and IOS 
+<b>Short Info </b>
+It is a Native app build using React-native and is compatiple with both Android and IOS 
 
 # Contribute
 #### This project still has scope of development, so you can also contribute to this Project as follows:
@@ -11,3 +14,7 @@ It is a Native app build using [React-native](https://facebook.github.io/react-n
 	* Goto your fork and create a pull request.
 	* We will test your modifications and merge changes.
 	
+## 🧐 Screenshots
+
+![](./screenshots/drawer.png)
+
