@@ -2,8 +2,8 @@
 import React, { Component } from 'react';
 //import react in our code.
 import { StyleSheet, View, Text ,Image, TextInput, Button, KeyboardAvoidingView, Alert} from 'react-native';
-// import all basic components
- 
+import { sendEmail } from './../components/email';
+
 export default class Screen3 extends Component {
   constructor(props){
     super(props)
@@ -14,6 +14,14 @@ export default class Screen3 extends Component {
     boleanf : false,
     off : 10,
   }
+}
+email = () => {
+  sendEmail(
+    'nishit22@somaiya.edu',
+       'Feedback From '+ this.state.text,
+        this.state.feedback,
+  )
+  Alert.alert("","Thank You for your valuable feedback :)")
 }
   render() {
     return (
@@ -44,7 +52,7 @@ export default class Screen3 extends Component {
         <Button
           color="#34495e"
           title="Sumbit"
-          onPress={() => Alert.alert("","Thank You for your valuable feedback :)")}
+          onPress={this.email}
         />
         <Text style={styles.quoteu}>“We all need people who will give us feedback. That’s how we improve.”</Text>
         <Text style={styles.quoted}>-Bill Gates</Text>
