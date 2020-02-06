@@ -1,4 +1,4 @@
-#  <center>Pointer Calculator App </center>
+#  <center>Pointer Calculator App (Ponter Calc) </center>
 
 ![](./screenshots/main.png)
 <hr/>
