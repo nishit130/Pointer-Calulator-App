@@ -6,6 +6,7 @@ import {createStackNavigator, CardAnimationContext} from 'react-navigation-stack
 import Screen1 from './pages/Screen1';
 import Screen2 from './pages/Screen2';
 import Screen3 from './pages/Screen3';
+import Screen4 from './pages/sem2';
 import Sidebar from './components/drawer';
 
 
@@ -74,12 +75,33 @@ const Screen3_StackNavigator = createStackNavigator({
     }),
   },
 });
+
+const Screen4_StackNavigator = createStackNavigator({
+  Fourth: {
+    screen: Screen4,
+    navigationOptions: ({ navigation }) => ({
+      title: 'Semester II',
+      headerLeft: <NavigationDrawerStructure navigationProps={navigation} />,
+      headerStyle: {
+        backgroundColor: '#34495e',
+      },
+      headerTintColor: '#1abc9c',
+      gestureEnabled :true,
+    }),
+  },
+});
 const DrawerNavigatorExample = createDrawerNavigator({
   Screen1: {
     //Title
     screen: FirstActivity_StackNavigator,
     navigationOptions: {
-      drawerLabel: 'Home',
+      drawerLabel: 'Semester I',
+    },
+  },
+  Screen4:{
+    screen : Screen4_StackNavigator,
+    navigationOptions: {
+      drawerLabel: 'Semester II',
     },
   },
   Screen2: {
@@ -96,6 +118,7 @@ const DrawerNavigatorExample = createDrawerNavigator({
       drawerLabel: 'Feedback',
     },
   },
+  
 },
 // Drawer Navigator Config
 {

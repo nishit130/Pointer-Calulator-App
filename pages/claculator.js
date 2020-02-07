@@ -33,6 +33,7 @@ export default class pointerCalculator extends Component {
         eeeelab_7 : props.sub7,
         edlab_8 : props.sub8,
         workshop_9 : props.sub9,
+        iap_0 : props.sub10,
       },
       typer : "",
       current : "",
@@ -58,6 +59,7 @@ export default class pointerCalculator extends Component {
             eeeelab_7 : "7",
             edlab_8 : "8",
             workshop_9 : "9",
+            iap_0 : "0",
           },
           isHidden : !(this.state.isHidden),
         }
@@ -96,11 +98,12 @@ export default class pointerCalculator extends Component {
               eeeelab_7 : this.props.sub7,
               edlab_8 : this.props.sub8,
               workshop_9 : this.props.sub9,
+              iap_0 : this.props.sub10,
               },
             [save] : this.state.display,
             typer : "",
             text : "",
-            isHidden : !(this.state.isHidden)
+            isHidden : !(this.state.isHidden),
           }
         ))
         if(this.state[save] != 0)
@@ -148,7 +151,7 @@ export default class pointerCalculator extends Component {
         }
       ))    
       this.change_button();
-      if(para != this.props.sub1 && para != this.props.sub8 && para != this.props.sub6 && para != this.props.sub7 && para != this.props.sub9)
+      if(para != this.props.sub1 && para != this.props.sub8 && para != this.props.sub6 && para != this.props.sub7 && para != this.props.sub9 && para != this.props.sub10)
       {
         this.setState((
           {
@@ -156,13 +159,19 @@ export default class pointerCalculator extends Component {
           }
         ))
       }
-      else if(para == this.sub2)
+      else if(para == this.props.sub1)
       {
         this.setState((
           {
             text: `Enter the Total Marks out of 125 (100 Theorey + 25 Tutorials) for ${para}`,
           }
         ))
+      }
+      else if(para == this.props.sub10 || para == this.props.sub9)
+      {
+        this.setState({
+          text : `Enter the Total Marks out of 50 for ${para}`,
+        })
       }
       else{
         this.setState((
@@ -218,7 +227,7 @@ export default class pointerCalculator extends Component {
       Workshop : (this.state.Workshop/50)*100,
       IAP : (this.state.IAP/50)*100,
     }
-    if(parseInt(this.props.sub10)==0)
+    if(isNaN(parseInt(this.props.sub10)))
     {
       var pointer = (this.pointercal(pointers.AM)*5 + this.pointercal(pointers.EC)*4 + this.pointercal(pointers.ED)*3 + this.pointercal(pointers.EEEE)*3 + this.pointercal(pointers.CS)*2 + this.pointercal(pointers.EC_lab) + this.pointercal(pointers.ED_lab) + this.pointercal(pointers.EEEE_lab) + this.pointercal(pointers.Workshop)*2)/22;
     }
@@ -264,7 +273,7 @@ export default class pointerCalculator extends Component {
             <TouchableOpacity style={[styles.btnr,btnrstyles]} onPress={() => this.press(this.props.sub9,"Workshop","9")}><Text style={styles.bt}>{this.state.button_display.workshop_9}</Text><MyText hide={this.state.isHidden}><Text style={styles.bt}>{this.state.Workshop}</Text></MyText></TouchableOpacity>
             </View>
             <View style={styles.viewbt}>
-            <TouchableOpacity style={[styles.btnr,btnrstyles]} onPress={() => this.press(this.props.sub10,"IAP","0")}><Text style={styles.bt}>{this.props.sub10}</Text></TouchableOpacity>
+            <TouchableOpacity style={[styles.btnr,btnrstyles]} onPress={() => this.press(this.props.sub10,"IAP","0")}><Text style={styles.bt}>{this.state.button_display.iap_0}</Text><MyText hide={this.state.isHidden}><Text style={styles.bt}>{this.state.IAP}</Text></MyText></TouchableOpacity>
             </View>
           </View>
           <View style={styles.view4}>
