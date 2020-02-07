@@ -19,6 +19,7 @@
     "react-native-safe-area-context": "^0.6.2",
     "react-native-scaling-drawer": "^1.0.1",
     "react-native-screens": "^2.0.0-alpha.23",
+    "react-native-splash-screen": "^3.2.0",
     "react-native-webview": "^8.0.4",
     "react-navigation": "^4.0.10",
     "react-navigation-drawer": "^2.3.3",

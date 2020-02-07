@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useEffect } from 'react';
 import { View, Image, TouchableOpacity, Button, StyleSheet, ScrollView } from 'react-native';
 import {createAppContainer} from 'react-navigation';
 import {createDrawerNavigator} from 'react-navigation-drawer';
@@ -8,6 +8,7 @@ import Screen2 from './pages/Screen2';
 import Screen3 from './pages/Screen3';
 import Screen4 from './pages/sem2';
 import Sidebar from './components/drawer';
+import SplashScreen from 'react-native-splash-screen';
 
 
  
@@ -15,6 +16,14 @@ class NavigationDrawerStructure extends Component {
   toggleDrawer = () => {
     this.props.navigationProps.toggleDrawer();
   };
+  componentDidMount() {
+    // do stuff while splash screen is shown
+      // After having done stuff (such as async tasks) hide the splash screen
+      SplashScreen.hide();
+  }
+  // useEffect(create: () => {
+  //   SplashScreen.hide();
+  // },inputs:  []); 
   render() {
     return (
       <View style={{ flexDirection: 'row' }}>
