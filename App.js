@@ -1,5 +1,5 @@
 import React, { Component, useEffect } from 'react';
-import { View, Image, TouchableOpacity, Button, StyleSheet, ScrollView } from 'react-native';
+import { View, Image, TouchableOpacity, Button, StyleSheet, ScrollView , Switch} from 'react-native';
 import {createAppContainer} from 'react-navigation';
 import {createDrawerNavigator} from 'react-navigation-drawer';
 import {createStackNavigator, CardAnimationContext} from 'react-navigation-stack';
@@ -17,20 +17,15 @@ class NavigationDrawerStructure extends Component {
     this.props.navigationProps.toggleDrawer();
   };
   componentDidMount() {
-    // do stuff while splash screen is shown
-      // After having done stuff (such as async tasks) hide the splash screen
       SplashScreen.hide();
-  }
-  // useEffect(create: () => {
-  //   SplashScreen.hide();
-  // },inputs:  []); 
+  } 
   render() {
     return (
       <View style={{ flexDirection: 'row' }}>
         <TouchableOpacity onPress={this.toggleDrawer.bind(this)}>
           <Image
             source={require('./image/drawer.png')}
-            style={{ width: 25, height: 25, marginLeft: 5 }}
+            style={{ width: 30, height: 30, marginLeft: 5,tintColor:'#1abc9c', }}
           />
         </TouchableOpacity>
       </View>
@@ -43,7 +38,7 @@ const FirstActivity_StackNavigator = createStackNavigator({
     mode : 'modal',
     headerMode: 'float',
     navigationOptions: ({ navigation }) => ({
-      title: 'Calculator',
+      title: 'Semester I',
       headerShown : 'false',
       headerLeft: () => <NavigationDrawerStructure navigationProps={navigation} />,
       headerStyle: {
@@ -155,5 +150,10 @@ const DrawerNavigatorExample = createDrawerNavigator({
     }
   },
 });
+const styles = StyleSheet.create({
+  switch : {
+    marginLeft : 260,
+  }
+})
  
 export default createAppContainer(DrawerNavigatorExample);
