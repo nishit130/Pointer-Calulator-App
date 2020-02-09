@@ -15,6 +15,7 @@ export default class Screen4 extends Component {
         sub8 = "PIC Lab"
         sub9 = "Workshop II"
         sub10 = "IAP"
+        sub11 = "AM Tutorials"
         />
     );
   }

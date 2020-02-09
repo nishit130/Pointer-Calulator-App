@@ -3,6 +3,10 @@ import { StyleSheet, View, Text } from 'react-native';
 import PointerCalculator from './claculator';
  
 export default class Screen1 extends Component {
+  constructor(props)
+  {
+    super(props);
+  }
   render() {
     return (
         <PointerCalculator
@@ -16,6 +20,8 @@ export default class Screen1 extends Component {
         sub8 = "ED Lab"
         sub9 = "Workshop"
         sub10 = ""
+        sub11 = "AM Tutorials"
+        color = {this.props.screenProps}
         />
     );
   }

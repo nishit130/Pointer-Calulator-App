@@ -14,6 +14,7 @@ export default class pointerCalculator extends Component {
     this.state = {
       EC : 0,
       AM : 0,
+      AMT:0,
       ED : 0,
       EEEE : 0,
       CS : 0,
@@ -34,11 +35,16 @@ export default class pointerCalculator extends Component {
         edlab_8 : props.sub8,
         workshop_9 : props.sub9,
         iap_0 : props.sub10,
+        amt : props.sub11,
       },
       typer : "",
       current : "",
       text : "",
-      styl : "#34495e",
+      styl : "black",
+      btbg : "#34495e",
+      bg : "#34495e",
+      btc: "black",
+      // styl : "#34495e",
       isHidden : false,
     }
    }
@@ -60,6 +66,7 @@ export default class pointerCalculator extends Component {
             edlab_8 : "8",
             workshop_9 : "9",
             iap_0 : "0",
+            amt : "",
           },
           isHidden : !(this.state.isHidden),
         }
@@ -67,8 +74,7 @@ export default class pointerCalculator extends Component {
     }
     else{
       save = this.state.current;
-      // if(save == "AM")
-      if(this.state.display > 100 && save!="AM")
+      if(this.state.display > 100 && save != "AMT" && save != "ED_lab" && save != "EEEE_lab" && save != "EC_lab" && save != "IAP")
       {
         this.setState({
           display: 0,
@@ -77,14 +83,22 @@ export default class pointerCalculator extends Component {
         })
         this.counter = !this.counter
       }
-      else if(this.state.display >125 && save=="AM") {
+      else if(this.state.display >25 && save == "AMT") {
         this.setState({
           display: 0,
           typer: " ",
           text: "Enter Valid Marks",
         })
         this.counter = !this.counter
-    }
+      }
+      else if(this.state.display >50 && (save == "ED_lab" || save == "EC_lab" || save == "EEEE_lab" || save == "IAP") ) {
+        this.setState({
+          display: 0,
+          typer: " ",
+          text: "Enter Valid Marks",
+        })
+        this.counter = !this.counter
+      }
       else{
         this.setState((
           {
@@ -99,11 +113,13 @@ export default class pointerCalculator extends Component {
               edlab_8 : this.props.sub8,
               workshop_9 : this.props.sub9,
               iap_0 : this.props.sub10,
+              amt : this.props.sub11,
               },
             [save] : this.state.display,
             typer : "",
             text : "",
             isHidden : !(this.state.isHidden),
+            isHiddendisplay : false,
           }
         ))
         if(this.state[save] != 0)
@@ -121,6 +137,7 @@ export default class pointerCalculator extends Component {
     this.setState({
       EC : 0,
       AM : 0,
+      AMT : 0,
       ED : 0,
       EEEE : 0,
       CS : 0,
@@ -131,6 +148,7 @@ export default class pointerCalculator extends Component {
       display : 0,
       text : "",
       typer : "",
+      btc : this.props.color,
     })
     if(!isNaN(parseInt(this.state.button_display.am_1)))
     {
@@ -151,7 +169,7 @@ export default class pointerCalculator extends Component {
         }
       ))    
       this.change_button();
-      if(para != this.props.sub1 && para != this.props.sub8 && para != this.props.sub6 && para != this.props.sub7 && para != this.props.sub9 && para != this.props.sub10)
+      if(para != this.props.sub11 && para != this.props.sub8 && para != this.props.sub6 && para != this.props.sub7 && para != this.props.sub9 && para != this.props.sub10)
       {
         this.setState((
           {
@@ -159,11 +177,11 @@ export default class pointerCalculator extends Component {
           }
         ))
       }
-      else if(para == this.props.sub1)
+      else if(para == this.props.sub11)
       {
         this.setState((
           {
-            text: `Enter the Total Marks out of 125 (100 Theorey + 25 Tutorials) for ${para}`,
+            text: `Enter the Total Marks out of 25 for ${para}`,
           }
         ))
       }
@@ -215,9 +233,10 @@ export default class pointerCalculator extends Component {
       return 0;
   }
   calculate = () => {
-    let pointers = {
+    var pointers = {
       EC : (this.state.EC/100)*100,
-      AM : (this.state.AM/125)*100,
+      AM : (this.state.AM/100)*100,
+      AMT : (this.state.AMT/25)*100,
       ED : (this.state.ED/100)*100,
       EEEE : (this.state.EEEE/100)*100,
       CS : (this.state.CS/100)*100,
@@ -229,10 +248,10 @@ export default class pointerCalculator extends Component {
     }
     if(isNaN(parseInt(this.props.sub10)))
     {
-      var pointer = (this.pointercal(pointers.AM)*5 + this.pointercal(pointers.EC)*4 + this.pointercal(pointers.ED)*3 + this.pointercal(pointers.EEEE)*3 + this.pointercal(pointers.CS)*2 + this.pointercal(pointers.EC_lab) + this.pointercal(pointers.ED_lab) + this.pointercal(pointers.EEEE_lab) + this.pointercal(pointers.Workshop)*2)/22;
+      var pointer = (this.pointercal(pointers.AM)*4 + (this.pointercal(pointers.AMT))*1 + this.pointercal(pointers.EC)*4 + this.pointercal(pointers.ED)*3 + this.pointercal(pointers.EEEE)*3 + this.pointercal(pointers.CS)*2 + this.pointercal(pointers.EC_lab) + this.pointercal(pointers.ED_lab) + this.pointercal(pointers.EEEE_lab) + this.pointercal(pointers.Workshop)*2)/22;
     }
     else{
-     var pointer = (this.pointercal(pointers.AM)*5 + this.pointercal(pointers.EC)*4 + this.pointercal(pointers.ED)*3 + this.pointercal(pointers.EEEE)*3 + this.pointercal(pointers.CS)*2 + this.pointercal(pointers.EC_lab) + this.pointercal(pointers.ED_lab) + this.pointercal(pointers.EEEE_lab) + this.pointercal(pointers.Workshop)*2 + this.pointercal(pointers.IAP)*2)/24;
+     var pointer = (this.pointercal(pointers.AM)*4 + (this.pointercal(pointers.AMT))*1 + this.pointercal(pointers.EC)*4 + this.pointercal(pointers.ED)*3 + this.pointercal(pointers.EEEE)*3 + this.pointercal(pointers.CS)*2 + this.pointercal(pointers.EC_lab) + this.pointercal(pointers.ED_lab) + this.pointercal(pointers.EEEE_lab) + this.pointercal(pointers.Workshop)*2 + this.pointercal(pointers.IAP)*2)/24;
     }
     this.setState((
       {
@@ -246,10 +265,17 @@ export default class pointerCalculator extends Component {
       borderRightWidth: 5,
       alignItems: "center",
       justifyContent: "center",
-      backgroundColor: this.state.styl,
+      backgroundColor: this.state.btbg,
     }
+    const viewstyles = {
+      backgroundColor: this.state.bg,
+    }
+    const btstyles = {
+      color : this.state.btc,
+    }
+
     return (
-      <View style={styles.view}>
+      <View style={[styles.view,viewstyles]}>
       <View style={styles.alert}><Text></Text></View>
       <View style={[styles.view1,styles.alert]}>
         <Text style={styles.textview}>{this.state.display}</Text>
@@ -258,28 +284,29 @@ export default class pointerCalculator extends Component {
       <View style={styles.view2}>
           <View style={styles.view3}>
             <View style={styles.viewbt}>
-            <TouchableOpacity style={[styles.btnr,btnrstyles]} onPress={() => this.press(this.props.sub1,"AM","1")}><Text style={styles.bt}>{this.state.button_display.am_1}</Text><MyText hide={this.state.isHidden}><Text style={styles.bt}>{this.state.AM}</Text></MyText></TouchableOpacity>
-            <TouchableOpacity style={[styles.btnr,btnrstyles]} onPress={() => this.press(this.props.sub2,"EEEE","2")}><Text style={styles.bt}>{this.state.button_display.eeee_2}</Text><MyText hide={this.state.isHidden}><Text style={styles.bt}>{this.state.EEEE}</Text></MyText></TouchableOpacity>
-            <TouchableOpacity style={[styles.btnr,btnrstyles]} onPress={() => {this.press(this.props.sub3,"EC","3");}}><Text style={styles.bt}>{this.state.button_display.ec_3}</Text><MyText hide={this.state.isHidden}><Text style={styles.bt}>{this.state.EC}</Text></MyText></TouchableOpacity>
+            <TouchableOpacity style={[styles.btnr,btnrstyles]} onPress={() => this.press(this.props.sub1,"AM","1")}><Text style={[styles.bt,btstyles]}>{this.state.button_display.am_1}</Text><MyText hide={this.state.isHidden}><Text style={[styles.bt,btstyles]}>{this.state.AM}</Text></MyText></TouchableOpacity>
+            <TouchableOpacity style={[styles.btnr,btnrstyles]} onPress={() => this.press(this.props.sub2,"EEEE","2")}><Text style={[styles.bt,btstyles]}>{this.state.button_display.eeee_2}</Text><MyText hide={this.state.isHidden}><Text style={[styles.bt,btstyles]}>{this.state.EEEE}</Text></MyText></TouchableOpacity>
+            <TouchableOpacity style={[styles.btnr,btnrstyles]} onPress={() => {this.press(this.props.sub3,"EC","3");}}><Text style={[styles.bt,btstyles]}>{this.state.button_display.ec_3}</Text><MyText hide={this.state.isHidden}><Text style={[styles.bt,btstyles]}>{this.state.EC}</Text></MyText></TouchableOpacity>
             </View>
             <View style={styles.viewbt}>
-            <TouchableOpacity style={[styles.btnr,btnrstyles]} onPress= {() => this.press(this.props.sub4,"ED","4")}><Text style={styles.bt}>{this.state.button_display.ed_4}</Text><MyText hide={this.state.isHidden}><Text style={styles.bt}>{this.state.ED}</Text></MyText></TouchableOpacity>
-            <TouchableOpacity style={[styles.btnr,btnrstyles]} onPress={() => this.press(this.props.sub5,"CS","5")}><Text style={styles.bt}>{this.state.button_display.cs_5}</Text><MyText hide={this.state.isHidden}><Text style={styles.bt}>{this.state.CS}</Text></MyText></TouchableOpacity>
-            <TouchableOpacity style={[styles.btnr,btnrstyles]} onPress={() => this.press(this.props.sub6,"EC_lab","6")}><Text style={styles.bt}>{this.state.button_display.eclab_6}</Text><MyText hide={this.state.isHidden}><Text style={styles.bt}>{this.state.EC_lab}</Text></MyText></TouchableOpacity>
+            <TouchableOpacity style={[styles.btnr,btnrstyles]} onPress= {() => this.press(this.props.sub4,"ED","4")}><Text style={[styles.bt,btstyles]}>{this.state.button_display.ed_4}</Text><MyText hide={this.state.isHidden}><Text style={[styles.bt,btstyles]}>{this.state.ED}</Text></MyText></TouchableOpacity>
+            <TouchableOpacity style={[styles.btnr,btnrstyles]} onPress={() => this.press(this.props.sub5,"CS","5")}><Text style={[styles.bt,btstyles]}>{this.state.button_display.cs_5}</Text><MyText hide={this.state.isHidden}><Text style={[styles.bt,btstyles]}>{this.state.CS}</Text></MyText></TouchableOpacity>
+            <TouchableOpacity style={[styles.btnr,btnrstyles]} onPress={() => this.press(this.props.sub6,"EC_lab","6")}><Text style={[styles.bt,btstyles]}>{this.state.button_display.eclab_6}</Text><MyText hide={this.state.isHidden}><Text style={[styles.bt,btstyles]}>{this.state.EC_lab}</Text></MyText></TouchableOpacity>
             </View>
             <View style={styles.viewbt}>
-            <TouchableOpacity style={[styles.btnr,btnrstyles]} onPress={() => this.press(this.props.sub7,"EEEE_lab","7")}><Text style={styles.bt}>{this.state.button_display.eeeelab_7}</Text><MyText hide={this.state.isHidden}><Text style={styles.bt}>{this.state.EEEE_lab}</Text></MyText></TouchableOpacity>
-            <TouchableOpacity style={[styles.btnr,btnrstyles]} onPress={() => this.press(this.props.sub8,"ED_lab","8")}><Text style={styles.bt}>{this.state.button_display.edlab_8}</Text><MyText hide={this.state.isHidden}><Text style={styles.bt}>{this.state.ED_lab}</Text></MyText></TouchableOpacity>
-            <TouchableOpacity style={[styles.btnr,btnrstyles]} onPress={() => this.press(this.props.sub9,"Workshop","9")}><Text style={styles.bt}>{this.state.button_display.workshop_9}</Text><MyText hide={this.state.isHidden}><Text style={styles.bt}>{this.state.Workshop}</Text></MyText></TouchableOpacity>
+            <TouchableOpacity style={[styles.btnr,btnrstyles]} onPress={() => this.press(this.props.sub7,"EEEE_lab","7")}><Text style={[styles.bt,btstyles]}>{this.state.button_display.eeeelab_7}</Text><MyText hide={this.state.isHidden}><Text style={[styles.bt,btstyles]}>{this.state.EEEE_lab}</Text></MyText></TouchableOpacity>
+            <TouchableOpacity style={[styles.btnr,btnrstyles]} onPress={() => this.press(this.props.sub8,"ED_lab","8")}><Text style={[styles.bt,btstyles]}>{this.state.button_display.edlab_8}</Text><MyText hide={this.state.isHidden}><Text style={[styles.bt,btstyles]}>{this.state.ED_lab}</Text></MyText></TouchableOpacity>
+            <TouchableOpacity style={[styles.btnr,btnrstyles]} onPress={() => this.press(this.props.sub9,"Workshop","9")}><Text style={[styles.bt,btstyles]}>{this.state.button_display.workshop_9}</Text><MyText hide={this.state.isHidden}><Text style={[styles.bt,btstyles]}>{this.state.Workshop}</Text></MyText></TouchableOpacity>
             </View>
             <View style={styles.viewbt}>
-            <TouchableOpacity style={[styles.btnr,btnrstyles]} onPress={() => this.press(this.props.sub10,"IAP","0")}><Text style={styles.bt}>{this.state.button_display.iap_0}</Text><MyText hide={this.state.isHidden}><Text style={styles.bt}>{this.state.IAP}</Text></MyText></TouchableOpacity>
+            <TouchableOpacity style={[styles.btnr,btnrstyles]} onPress={() => this.press(this.props.sub11,"AMT")}><Text style={[styles.bt,btstyles]}>{this.state.button_display.amt}</Text><MyText hide={this.state.isHidden}><Text style={[styles.bt,btstyles]}>{this.state.AMT}</Text></MyText></TouchableOpacity>
+            <TouchableOpacity style={[styles.btnr,btnrstyles]} onPress={() => this.press(this.props.sub10,"IAP","0")}><Text style={[styles.bt,btstyles]}>{this.state.button_display.iap_0}</Text><MyText hide={this.state.isHidden}><Text style={[styles.bt,btstyles]}>{this.state.IAP}</Text></MyText></TouchableOpacity>
             </View>
           </View>
           <View style={styles.view4}>
-            <TouchableOpacity style={[styles.btnr,btnrstyles]} onPress={this.change_button}><Text style = {styles.bt}>Enter</Text></TouchableOpacity>
-            <TouchableOpacity style={[styles.btnr,btnrstyles,styles.viewbtr]} onPress={this.calculate}><Text style = {styles.bt}>Calculate</Text></TouchableOpacity>
-            <TouchableOpacity style={[styles.btnr,btnrstyles,styles.viewbtr]} onPress={this.clear}><Text style = {styles.bt}>clear</Text></TouchableOpacity>
+            <TouchableOpacity style={[styles.btnr,btnrstyles]} onPress={this.change_button}><Text style = {[styles.bt,btstyles]}>Enter</Text></TouchableOpacity>
+            <TouchableOpacity style={[styles.btnr,btnrstyles,styles.viewbtr]} onPress={this.calculate}><Text style = {[styles.bt,btstyles]}>Calculate</Text></TouchableOpacity>
+            <TouchableOpacity style={[styles.btnr,btnrstyles,styles.viewbtr]} onPress={this.clear}><Text style = {[styles.bt,btstyles]}>clear</Text></TouchableOpacity>
           </View>
       </View>
       </View>
@@ -290,7 +317,8 @@ const styles = StyleSheet.create({
   view: {
     flex:1,
     flexDirection: 'column',
-    backgroundColor : "#1abc9c",
+    // backgroundColor : "#1abc9c",
+    // backgroundColor : 'black',
     justifyContent : 'center',
     alignItems : 'center',
   },
@@ -307,11 +335,13 @@ const styles = StyleSheet.create({
     marginBottom: 15,
     fontWeight : "900",
     textAlign: "center",
-    color : '#2c3e50',
+    // color : '#2c3e50',
+    // color : 'white',
   },
   textviewmsg : {
     height : 70,
-    color : '#2c3e50',
+    // color : '#2c3e50',
+    // color : 'white',
     fontSize: 18,
     fontFamily : 'lucida grande',
     fontWeight :'bold',
@@ -326,10 +356,11 @@ const styles = StyleSheet.create({
     justifyContent : 'center',
     alignItems : 'center',
     borderRadius : 40,
+    backgroundColor : "white",
+    borderColor : 'white',
     marginTop: 10,
     marginBottom : 10,
     fontSize:30,
-    // backgroundColor: 'white',
   },
   view2 : {
     flex: 1,
@@ -346,22 +377,25 @@ const styles = StyleSheet.create({
     flex: 8,
     borderRightWidth: 5,
     borderColor : "#2c3e50",
+    // borderColor : 'white',
     alignItems: "center",
     justifyContent: "center",
-    // backgroundColor: "blue",
   },
   viewbt : {
     flex: 1,
     borderTopWidth : 5,
     borderColor : "#2c3e50",
+    // borderColor : 'white',
     flexDirection : "row",
   },
   viewbtr : {
     borderTopWidth : 5,
     borderColor : "#2c3e50",
+    // borderColor : 'white',
   },
   bt: {
-    color : "#1abc9c",
+    // color : "#1abc9c",
+    // color : 'white',
     fontSize: 15,
     fontWeight : 'bold',
   }

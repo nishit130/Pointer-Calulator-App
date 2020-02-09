@@ -13,6 +13,13 @@ import SplashScreen from 'react-native-splash-screen';
 
  
 class NavigationDrawerStructure extends Component {
+  constructor(props)
+  {
+    super(props);
+    this.state = {
+      test : "balck",
+    }
+  }
   toggleDrawer = () => {
     this.props.navigationProps.toggleDrawer();
   };
@@ -32,15 +39,17 @@ class NavigationDrawerStructure extends Component {
     );
   }
 }
+var test = "black";
 const FirstActivity_StackNavigator = createStackNavigator({
   First: {
-    screen: Screen1,
+    screen: props => <Screen1 {...props} screenProps={test}/>,
     mode : 'modal',
     headerMode: 'float',
     navigationOptions: ({ navigation }) => ({
       title: 'Semester I',
       headerShown : 'false',
       headerLeft: () => <NavigationDrawerStructure navigationProps={navigation} />,
+      // headerRight: () => <Button onPress={}></Button>,
       headerStyle: {
         backgroundColor: '#34495e',
       },
