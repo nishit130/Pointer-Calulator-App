@@ -40,11 +40,10 @@ export default class pointerCalculator extends Component {
       typer : "",
       current : "",
       text : "",
-      styl : "black",
+      styl : props.color,
       btbg : "#34495e",
       bg : "#34495e",
-      btc: "black",
-      // styl : "#34495e",
+      btc: "white",
       isHidden : false,
     }
    }

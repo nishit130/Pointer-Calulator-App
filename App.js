@@ -27,6 +27,7 @@ class NavigationDrawerStructure extends Component {
       SplashScreen.hide();
   } 
   render() {
+
     return (
       <View style={{ flexDirection: 'row' }}>
         <TouchableOpacity onPress={this.toggleDrawer.bind(this)}>
@@ -39,17 +40,15 @@ class NavigationDrawerStructure extends Component {
     );
   }
 }
-var test = "black";
 const FirstActivity_StackNavigator = createStackNavigator({
   First: {
-    screen: props => <Screen1 {...props} screenProps={test}/>,
+    screen: props => <Screen1 {...props}/>,
     mode : 'modal',
     headerMode: 'float',
     navigationOptions: ({ navigation }) => ({
       title: 'Semester I',
       headerShown : 'false',
       headerLeft: () => <NavigationDrawerStructure navigationProps={navigation} />,
-      // headerRight: () => <Button onPress={}></Button>,
       headerStyle: {
         backgroundColor: '#34495e',
       },
