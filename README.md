@@ -1,5 +1,5 @@
 #  <center>Pointer Calculator App (Ponter Calc) </center>
-### Download link for apk file [Google Drive](https://drive.google.com/file/d/1anQ3n9NypuyROBh_hNdxqN7BGn0trrGm/view?usp=sharing)
+### Download link for apk file [Google Drive](https://drive.google.com/open?id=1i4c65iuF_KFo0Bf77lICUeGwBBSQsl8K)
 
 ![](./screenshots/main.png)
 <hr/>
