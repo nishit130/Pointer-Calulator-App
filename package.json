@@ -12,7 +12,7 @@
   "dependencies": {
     "@react-native-community/masked-view": "^0.1.6",
     "react": "16.9.0",
-    "react-native": "0.61.5",
+    "react-native": "0.70.6",
     "react-native-gesture-handler": "^1.5.3",
     "react-native-pdf": "^6.0.1",
     "react-native-reanimated": "^1.4.0",
@@ -30,9 +30,9 @@
     "@babel/core": "^7.6.2",
     "@babel/runtime": "^7.6.2",
     "@react-native-community/eslint-config": "^0.0.5",
-    "babel-jest": "^24.9.0",
+    "babel-jest": "^29.3.1",
     "eslint": "^6.5.1",
-    "jest": "^24.9.0",
+    "jest": "^29.3.1",
     "metro-react-native-babel-preset": "^0.56.0",
     "react-test-renderer": "16.9.0"
   },
